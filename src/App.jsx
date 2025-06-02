@@ -6,6 +6,7 @@ import Reset from "./Auth/Reset/Reset";
 import UploadForm from "./Upload/Upload";
 import RetrieveText from "./Upload/Retrive";
 import ProtectedRoute from "./ProtectedRoute";
+import ManageJobs from "./Upload/ManageJobs";
 
 function App() {
   return (
@@ -24,6 +25,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Protected route: Only signed-in users can upload */}
+        <Route
+          path="/manage"
+          element={
+            <ProtectedRoute>
+              <ManageJobs />
+            </ProtectedRoute>
+          }
+        />
+
 
         <Route path="/retrieve" element={<RetrieveText />} />
 
