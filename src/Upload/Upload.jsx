@@ -87,7 +87,8 @@ const Upload = () => {
         placeholder="Role"
         value={role}
         onChange={(e) => setRole(e.target.value)}
-      /><br /><br />
+      />
+      <br /><br />
 
       <input
         placeholder="Company"

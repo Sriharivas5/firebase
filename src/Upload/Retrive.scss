@@ -1,0 +1,27 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+.retrieve {
+    background-color: $primary-color;
+    width: 100vw;
+    min-height: 90vh;
+    @include flex(column, space-between, center, wrap);
+
+    .cards {
+        width: 100%;
+        @include flex(row, space-evenly, flex-start, wrap);
+        gap: 10px;
+        .card {
+            width: 400px;
+            height: 240px;
+            border: 2px solid $secondary-color;
+            padding: 10px;
+            border-radius: 6px;
+            @include flex(column, space-between, wrap);
+            .flex {
+                @include flex;
+                justify-content: space-around;
+               
+            }
+        }
+    }
+}
