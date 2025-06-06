@@ -10,9 +10,10 @@
         width: 100%;
         @include flex(row, space-evenly, flex-start, wrap);
         gap: 10px;
+
         .card {
             width: 400px;
-            height: 280px;
+            height: 240px;
             padding: 10px;
             border: 2px solid $secondary-color;
             border-radius: 6px;
@@ -20,7 +21,6 @@
             flex-direction: column;
             justify-content: space-between;
 
-      
             .flex {
                 display: flex;
                 justify-content: space-between;

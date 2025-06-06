@@ -94,18 +94,18 @@ const Retrieve = () => {
         ) : (
           filteredJobs.map((job) => (
             <div className="card" key={job.id}>
-              <h2>Role: {job.role}</h2>
-              <h3>Company: {job.company}</h3>
+              <h3>Role: {job.role}</h3>
+              <h4>Company: {job.company}</h4>
 
               <div className="flex">
-                <h3>Experience: {job.experience}</h3>
-                  <h3>
+                <h4>Experience: {job.experience}</h4>
+                  <h4>
                   Location :
                   {job.location}
-                </h3>
+                </h4>
               </div>
 
-              <h3>
+              <h4>
                 Skills:
                 <div className="skills">
                   {Array.isArray(job.skills) &&
@@ -115,16 +115,16 @@ const Retrieve = () => {
                       </button>
                     ))}
                 </div>
-              </h3>
+              </h4>
 
-              <h3>
+              <h4>
                 Posted{" "}
                 {job.createdAt
                   ? formatDistanceToNow(job.createdAt, {
                       addSuffix: true,
                     }).replace("about ", "")
                   : "some time ago"}
-              </h3>
+              </h4>
             </div>
           ))
         )}
