@@ -99,13 +99,9 @@ const Retrieve = () => {
 
               <div className="flex">
                 <h3>Experience: {job.experience}</h3>
-                <h3>
-                  Mode:{" "}
-                  {job.mode === "WFH"
-                    ? "Work from Home"
-                    : job.mode === "WFO"
-                    ? "In Office"
-                    : job.mode}
+                  <h3>
+                  Location :
+                  {job.location}
                 </h3>
               </div>
 

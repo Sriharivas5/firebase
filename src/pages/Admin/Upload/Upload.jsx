@@ -18,7 +18,7 @@ const Upload = () => {
   const [customSkill, setCustomSkill] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [experience, setExperience] = useState("");
-  const [mode, setMode] = useState("Remote");
+  const [location, setLocation] = useState("");
 
   const [predefinedSkills, setPredefinedSkills] = useState(initialSkills);
   const [newSuggestedSkill, setNewSuggestedSkill] = useState("");
@@ -86,7 +86,7 @@ const Upload = () => {
       company,
       skills: selectedSkills,
       experience,
-      mode,
+      location,
       stack: selectedStacks,
       createdAt: serverTimestamp(),
     };
@@ -98,7 +98,7 @@ const Upload = () => {
       setCompany("");
       setSelectedSkills([]);
       setExperience("");
-      setMode("Remote");
+      setLocation("");
       setCustomSkill("");
       setSelectedStacks([]);
       setCustomStack("");
@@ -194,12 +194,9 @@ const Upload = () => {
         onChange={(e) => setExperience(e.target.value)}
       /><br /><br />
 
-      <select value={mode} onChange={(e) => setMode(e.target.value)}>
-        <option value="Remote">Remote</option>
-        <option value="In Office">In Office</option>
-        <option value="Hybrid">Hybrid</option>
+   
 
-      </select><br /><br />
+      <input placeholder="location" value={location} onChange={(e) => setLocation(e.target.value)} type="text" />
 
       <button onClick={handleUpload}>Upload</button>
     </div>
