@@ -1,0 +1,69 @@
+.resume-builder {
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+
+  .template-select {
+    text-align: center;
+
+    .template-options {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+
+      .template-box {
+        border: 2px solid #ccc;
+        padding: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          border-color: #000;
+          background: #f0f0f0;
+        }
+      }
+    }
+  }
+
+  .resume-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .resume-preview {
+    background: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    h2 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 5px 0;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

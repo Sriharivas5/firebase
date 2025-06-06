@@ -11,3 +11,13 @@
     align-items: $align;
     flex-wrap: $wrap;
 }
+
+
+@mixin skills_button {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: $button_color;
+    border: none;
+    margin: 3px 5px;
+    color: $secondary-color;
+}

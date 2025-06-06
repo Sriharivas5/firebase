@@ -1,0 +1,87 @@
+.resume-container {
+  font-family: 'Times New Roman', serif;
+  color: #000;
+  padding: 50px 60px;
+  max-width: 816px;
+  margin: 40px auto;
+  background: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.resume-container .header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.resume-container h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.resume-container .contact-info {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.resume-container .links {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.resume-container section {
+  margin-top: 20px;
+}
+
+.resume-container section h2 {
+  font-size: 13px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.resume-container .item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.resume-container .item-header span {
+  font-size: 13px;
+}
+
+.resume-container .item-date {
+  font-size: 12px;
+}
+
+.resume-container ul {
+  padding-left: 18px;
+  margin: 0 0 10px 0;
+  list-style-type: disc;
+}
+
+.resume-container ul li {
+  margin-bottom: 4px;
+}
+
+.resume-container .publication-title {
+  font-style: italic;
+  font-size: 13px;
+}
+
+.resume-container .download-btn {
+  margin-top: 24px;
+  padding: 8px 16px;
+  font-size: 13px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

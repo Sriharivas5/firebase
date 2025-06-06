@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../../firebase";
 import {
   collection,
   getDocs,
@@ -137,10 +137,9 @@ const ManageJobs = () => {
                   setEditedJob({ ...editedJob, mode: e.target.value })
                 }
               >
-                <option value="WFH">WFH</option>
-                <option value="WFO">WFO</option>
-                <option value="Hybrid">Hybrid</option>
                 <option value="Remote">Remote</option>
+                <option value="In Office">In Office</option>
+                <option value="Hybrid">Hybrid</option>
               </select>
 
               <br />

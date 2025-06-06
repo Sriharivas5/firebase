@@ -1,5 +1,9 @@
 1 Mystic Twilight
-#4b0082 #ffffff  #8a2be2 #da70D6 #DCDCDC
+#4b0082
+ #ffffff  
+#8a2be2
+ #da70D6 
+#DCDCDC
 
 
 2 
