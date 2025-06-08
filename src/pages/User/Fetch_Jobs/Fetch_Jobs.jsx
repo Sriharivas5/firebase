@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { formatDistanceToNow } from "date-fns";
-import "./Fetch_Jobs.scss";
+// import "./Fetch_Jobs.scss";
+import "./Fetch_Jobs_Dark.scss"
 
 const Retrieve = () => {
   const [jobs, setJobs] = useState([]);
