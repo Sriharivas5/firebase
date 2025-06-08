@@ -2,7 +2,7 @@
 @import "../../../styles/mixins";
 .retrieve {
     background-color: $primary-color;
-    width: 100vw;
+    max-width: 100vw;
     min-height: 90vh;
     @include flex(column, space-between, center, wrap);
 

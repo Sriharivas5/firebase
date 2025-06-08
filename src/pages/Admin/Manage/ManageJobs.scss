@@ -1,0 +1,294 @@
+$primary-color: #902bf5;
+$primary-color-hover: lighten($primary-color, 10%);
+$background-color: #fff;
+$text-color: #222;
+$border-color: lighten($primary-color, 50%);
+$input-bg: #fafafa;
+$input-border: #ddd;
+
+.manage-jobs {
+  padding: 20px;
+  max-width: 100vw;
+  margin: 2rem auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: $text-color;
+  background: #f9f9fb;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(144, 43, 245, 0.15);
+
+  .sort-section {
+    margin-bottom: 1rem;
+
+    select {
+      margin-left: 10px;
+      padding: 5px;
+    }
+  }
+
+    h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      color: $primary-color;
+      font-weight: 700;
+    }
+
+    .cards {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+
+
+
+
+      .job-card {
+        width: 300px;
+        background: $background-color;
+        border: 1.5px solid $border-color;
+        padding: 1.5rem 2rem;
+        margin-bottom: 1.8rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(144, 43, 245, 0.1);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 6px 20px rgba(144, 43, 245, 0.25);
+        }
+
+        strong {
+          font-size: 1.3rem;
+          color: $primary-color;
+          display: inline-block;
+          margin-bottom: 0.3rem;
+        }
+
+        em {
+          font-style: normal;
+          color: darken($primary-color, 10%);
+          font-weight: 600;
+          margin-left: 0.3rem;
+        }
+
+        small {
+          font-weight: 600;
+          color: darken($text-color, 40%);
+        }
+
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+            color: $primary-color-hover;
+          }
+        }
+
+        button {
+          cursor: pointer;
+          background-color: transparent;
+          border: 1.5px solid $primary-color;
+          color: $primary-color;
+          padding: 0.4rem 1rem;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          margin-top: 1rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: $primary-color;
+            color: $background-color;
+            border-color: $primary-color-hover;
+          }
+
+          &:not(:last-child) {
+            margin-right: 0.8rem;
+          }
+        }
+
+        /* Editing Mode Inputs */
+        input {
+          width: 100%;
+          padding: 0.5rem 0.8rem;
+          margin-bottom: 1rem;
+          font-size: 1rem;
+          border-radius: 8px;
+          border: 1.5px solid $input-border;
+          background-color: $input-bg;
+          color: $text-color;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            border-color: $primary-color;
+            outline: none;
+            background-color: lighten($input-bg, 5%);
+          }
+        }
+
+        /* Skill & Stack Buttons */
+        >div {
+          margin-bottom: 0.7rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          button {
+            background-color: #fff;
+            border: 1.5px solid $primary-color;
+            color: $primary-color;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            user-select: none;
+
+            &:hover {
+              background-color: $primary-color;
+              color: $background-color;
+              border-color: $primary-color-hover;
+            }
+          }
+        }
+      }
+
+
+
+
+
+
+      .job-card-edit {
+        width: 80vw;
+        background: $background-color;
+        border: 1.5px solid $border-color;
+        padding: 1.5rem 2rem;
+        margin-bottom: 1.8rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(144, 43, 245, 0.1);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 6px 20px rgba(144, 43, 245, 0.25);
+        }
+
+        .inputs {
+          display: flex;
+
+          input {
+            width: 200px;
+          }
+        }
+
+        .flex {
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 300px;
+          }
+        }
+
+
+        strong {
+          font-size: 1.3rem;
+          color: $primary-color;
+          display: inline-block;
+          margin-bottom: 0.3rem;
+        }
+
+        em {
+          font-style: normal;
+          color: darken($primary-color, 10%);
+          font-weight: 600;
+          margin-left: 0.3rem;
+        }
+
+        small {
+          font-weight: 600;
+          color: darken($text-color, 40%);
+        }
+
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+            color: $primary-color-hover;
+          }
+        }
+
+        button {
+          cursor: pointer;
+          background-color: transparent;
+          border: 1.5px solid $primary-color;
+          color: $primary-color;
+          padding: 0.4rem 1rem;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: $primary-color;
+            color: $background-color;
+            border-color: $primary-color-hover;
+          }
+
+          &:not(:last-child) {
+            margin-right: 0.8rem;
+          }
+        }
+
+        /* Editing Mode Inputs */
+        input {
+          width: 100%;
+          padding: 0.5rem 0.8rem;
+          margin-bottom: 1rem;
+          font-size: 1rem;
+          border-radius: 8px;
+          border: 1.5px solid $input-border;
+          background-color: $input-bg;
+          color: $text-color;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            border-color: $primary-color;
+            outline: none;
+            background-color: lighten($input-bg, 5%);
+          }
+        }
+
+        /* Skill & Stack Buttons */
+        >div {
+          margin-bottom: 0.7rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          button {
+            background-color: #fff;
+            border: 1.5px solid $primary-color;
+            color: $primary-color;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            user-select: none;
+
+            &:hover {
+              background-color: $primary-color;
+              color: $background-color;
+              border-color: $primary-color-hover;
+            }
+          }
+        }
+      }
+
+
+    }
+  }

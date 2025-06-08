@@ -42,8 +42,8 @@ const Retrieve = () => {
     selectedStacks.length === 0
       ? jobs
       : jobs.filter((job) =>
-          job.stack.some((s) => selectedStacks.includes(s))
-        );
+        job.stack.some((s) => selectedStacks.includes(s))
+      );
 
   const handleStackChange = (stack) => {
     setSelectedStacks((prev) =>
@@ -99,7 +99,7 @@ const Retrieve = () => {
 
               <div className="flex">
                 <h4>Experience: {job.experience}</h4>
-                  <h4>
+                <h4>
                   Location :
                   {job.location}
                 </h4>
@@ -117,14 +117,19 @@ const Retrieve = () => {
                 </div>
               </h4>
 
-              <h4>
-                Posted{" "}
-                {job.createdAt
-                  ? formatDistanceToNow(job.createdAt, {
+              <div className="flex">
+                <h4>
+                  Posted
+                  {job.createdAt
+                    ? formatDistanceToNow(job.createdAt, {
                       addSuffix: true,
                     }).replace("about ", "")
-                  : "some time ago"}
-              </h4>
+                    : "some time ago"}
+                </h4>
+
+                <a href={job.applyUrl} target="blank"><button>Apply Here</button></a>
+
+              </div>
             </div>
           ))
         )}
