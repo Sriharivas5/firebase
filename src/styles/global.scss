@@ -1,14 +1,29 @@
-@import "./variables";
+@import "./abstracts/variables";
+@import "./themes.scss";
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     // background-color: $button_color;
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
 }
 
-button{
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+button {
     padding: 3px 10px;
     border: none;
     border-radius: 5px;
@@ -17,7 +32,7 @@ button{
     margin: 2px 5px;
 }
 
-input{
+input {
     border: 1px solid $third-color;
     border-radius: 3px;
     padding: 2px 3px;

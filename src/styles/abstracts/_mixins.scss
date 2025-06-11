@@ -1,3 +1,5 @@
+@use "../themes.scss";
+@use "./variables";
 @mixin flex-center {
     display: flex;
     justify-content: center;
@@ -12,12 +14,17 @@
     flex-wrap: $wrap;
 }
 
-
 @mixin skills_button {
     padding: 5px 10px;
     border-radius: 8px;
-    background-color: $button_color;
+    // background-color: $button_color;
     border: none;
     margin: 3px 5px;
-    color: $secondary-color;
+    // color: $secondary-color;
+}
+
+@mixin grid($columns: $grid-columns, $gap: $grid-gap) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
 }

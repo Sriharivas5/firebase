@@ -1,15 +1,15 @@
 import React from "react";
-import "../../styles/template-one.scss";
+import "./TemplateThree.scss";
 
-const TemplateOne = ({ data }) => {
+const TemplateThree = ({ data }) => {
   const renderBullets = (bullets) =>
     bullets?.length ? <ul>{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul> : null;
   const joinArray = (arr) => arr?.join(", ") || "";
 
   return (
-    <div id="resume" className="resume-container template-one">
+    <div id="resume" className="resume-container template-three">
       <h1>{data.name}</h1>
-      <p>{data.location} | {data.email} | {data.phone}</p>
+      <p>{data.location} | {data.email} | {data.phThree}</p>
       <p>{data.website} | {data.linkedin} | {data.github}</p>
       <hr />
 
@@ -46,4 +46,4 @@ const TemplateOne = ({ data }) => {
   );
 };
 
-export default TemplateOne;
+export default TemplateThree;

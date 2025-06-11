@@ -2,9 +2,9 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { generatePDF } from "../../../utils/generatePDF";
 
-import TemplateOne from "../../../components/templates/TemplateOne";
-import TemplateTwo from "../../../components/templates/TemplateTwo";
-import TemplateThree from "../../../components/templates/TemplateThree";
+import TemplateOne from "../../../components/templates/TemplateOne/TemplateOne";
+import TemplateTwo from "../../../components/templates/TemplateTwo/TemplateTwo";
+import TemplateThree from "../../../components/templates/TemplateThree/TemplateThree";
 
 const templates = {
   template1: TemplateOne,

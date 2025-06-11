@@ -1,26 +1,31 @@
 import React from "react";
-import "../../styles/template-three.scss";
+import "./TemplateOne.scss";
 
-const TemplateThree = ({ data }) => {
+const TemplateOne = ({ data }) => {
   const renderBullets = (bullets) =>
     bullets?.length ? <ul>{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul> : null;
   const joinArray = (arr) => arr?.join(", ") || "";
 
   return (
-    <div id="resume" className="resume-container template-three">
-      <h1>{data.name}</h1>
-      <p>{data.location} | {data.email} | {data.phThree}</p>
-      <p>{data.website} | {data.linkedin} | {data.github}</p>
+    <div id="resume" className="resume-container template-one">
+      <div className="header">
+        <h1>{data.name}</h1>
+        <p>{data.location} | {data.email} | {data.phone}</p>
+        <p> {data.website} | {data.linkedin} | {data.github}</p>
+      </div>
+
       <hr />
 
-      <h2>Education</h2>
-      {data.education.map((edu, i) => (
-        <div key={i}>
-          <p><strong>{edu.institution}</strong> ({edu.date})</p>
-          <p>{edu.gpa}</p>
-          <p>Coursework: {edu.coursework}</p>
-        </div>
-      ))}
+      <div className="education">
+        <h2>Education</h2>
+        {data.education.map((edu, i) => (
+          <div key={i} className="">
+            <p><strong>{edu.institution}</strong> ({edu.date})</p>
+            <p>{edu.gpa}</p>
+            <p>Coursework: {edu.coursework}</p>
+          </div>
+        ))}
+      </div>
 
       <h2>Experience</h2>
       {data.experience.map((exp, i) => (
@@ -46,4 +51,4 @@ const TemplateThree = ({ data }) => {
   );
 };
 
-export default TemplateThree;
+export default TemplateOne;

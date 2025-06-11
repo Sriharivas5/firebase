@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/template-two.scss";
+import "./TemplateTwo.scss";
 
 const TemplateTwo = ({ data }) => {
   const renderBullets = (bullets) =>

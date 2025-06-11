@@ -1,0 +1,18 @@
+@use "../../../styles/themes.scss";
+@use "../../../styles/abstracts/mixins" as *;
+
+.template-selector {
+  background-color: var(--primary-color);
+  @include flex(column);
+  padding-top: 11vh;
+  .template-grid {
+    @include grid($columns: 4, $gap: 20px);
+    padding: 20px;
+
+    #template_Img {
+      width: 350px;
+      height: 430px;
+      border-radius: 7px;
+    }
+  }
+}

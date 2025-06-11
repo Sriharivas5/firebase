@@ -1,0 +1,100 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12vw;
+  min-width: 200px;
+  height: 100vh;
+  color: #fff;
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 100;
+  transition: all 0.3s ease;
+
+  .sort-section,
+  .stack-filters {
+    margin-bottom: 1.5rem;
+    @include flex(column, flex-start, flex-start);
+    gap: 10px;
+        
+
+  }
+
+  .stack-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    @include flex(column, flex-start, flex-start);
+   
+    label {
+      font-size: 0.9rem;
+      @include flex(row, center, center);
+      gap: 10px;
+       cursor: pointer;
+       input{
+        cursor: pointer;
+       }
+    }
+  }
+
+  select {
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 4px;
+    cursor: pointer;
+   
+  }
+
+  // Scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+  }
+}
+
+/* Light theme glassmorphism */
+[data-theme="light"] .sidebar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  color: #000;
+
+  label,
+  select {
+    color: #000;
+  }
+
+  select {
+    border: none;
+    background-color: $secondary-color;
+    color: $primary-color;
+    padding: 3px 5px;
+  }
+}
+
+/* Dark theme glassmorphism */
+[data-theme="dark"] .sidebar {
+  background-color: rgba(17, 25, 40, 0.418);
+  border: 2px solid rgba(192, 192, 192, 0.342);
+  box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .sidebar{
+    width: 100vw;
+    height: 10vh;
+    margin-top: 10vh;
+  }
+}

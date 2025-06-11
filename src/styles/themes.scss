@@ -1,0 +1,43 @@
+:root {
+  --bg-color: #ffffff;
+  --card-bg-color: #f9f9f9;
+  --text-color: #1c1c1c;
+  --label-color: #333333;
+  --input-bg-color: #ffffff;
+  --input-border-color: #cccccc;
+  --border-color: #dddddd;
+  --accent-color: #4a90e2;
+  --button-bg-color: #e0e0e0;
+  --button-text-color: #333333;
+  --danger-color: #e53935;
+
+  /* Your custom colors */
+  --primary-color: #ffffff;
+  --secondary-color: #622be2;
+  --third-color: #ada7d1;
+  --button-color: #e4d3ff;
+    --dark-color: #d8caff;
+
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --card-bg-color: #1e1e1e;
+  --text-color: #f1f1f1;
+  --label-color: #aaaaaa;
+  --input-bg-color: #1a1a1a;
+  --input-border-color: #444444;
+  --border-color: #333333;
+  --accent-color: #82b1ff;
+  --button-bg-color: #333333;
+  --button-text-color: #eeeeee;
+  --danger-color: #f44336;
+
+  /* Your dark theme custom colors */
+  --primary-color: #121212;
+  --secondary-color: #8a5cff;
+  --third-color: #c5baff;
+  --button-color: #3a2b5a;
+    --dark-color: #4b0082;
+
+}

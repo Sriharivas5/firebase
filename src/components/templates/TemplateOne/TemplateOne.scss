@@ -1,0 +1,31 @@
+@use "../../../styles/abstracts/mixins";
+@use "../../../styles/abstracts/variables";
+@use "../../../styles/themes.scss";
+
+.template-one {
+  font-family: "Georgia", serif;
+  color: #000000;
+  padding: 30px;
+  background-color: #ffffff;
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 12vh;
+  border-radius: 7px;
+
+  .header {
+    h1 {
+      font-size: 2.5rem;
+      // border-bottom: 2px solid #ccc;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    padding-bottom: 20px;
+  }
+
+  section {
+    margin-top: 1.5rem;
+  }
+}

@@ -1,80 +1,203 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+// @import "../../../styles/abstracts/variables";
+// @import "../../../styles/abstracts/mixins";
 
-.retrieve {
+// $sidebar-width: 12vw;
+
+// .retrieve {
+//   max-width: 100vw;
+//   min-height: 100vh;
+//   background-image: url("../../../assets/dark2.jpg");
+//   background-size: cover;
+//   background-position: center;
+//   background-attachment: fixed;
+//   color: $primary-color;
+//   padding: 20px;
+//   padding-top: 10vh;
+
+//   .content-container {
+//     margin-left: $sidebar-width;
+//     padding: 0 1rem;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+//   }
+
+//   h2 {
+//     margin-left: $sidebar-width;
+//   }
+
+//   .cards {
+//     width: 100%;
+//     @include flex(row, space-evenly, flex-start, wrap);
+//     gap: 20px;
+
+//     .card {
+//       width: 380px;
+//       height: 240px;
+//       padding: 10px;
+//       margin-top: 10px;
+//       border-radius: 6px;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       backdrop-filter: blur(8px) saturate(180%);
+//       -webkit-backdrop-filter: blur(16px) saturate(180%);
+//       background-color: rgba(17, 25, 40, 0.418);
+//       border: 2px solid rgba(192, 192, 192, 0.342);
+//       box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
+//       color: $primary-color;
+
+//       .flex {
+//         display: flex;
+//         justify-content: space-between;
+//       }
+
+//       .skills {
+//         display: flex;
+//         flex-wrap: wrap;
+//         gap: 6px;
+//         max-height: 80px;
+//         overflow-y: auto;
+//         padding: 4px 0;
+
+//         &::-webkit-scrollbar {
+//           height: 6px;
+//           width: 6px;
+//         }
+
+//         &::-webkit-scrollbar-thumb {
+//           background-color: lighten($secondary-color, 10%);
+//           border-radius: 4px;
+//         }
+
+//         &::-webkit-scrollbar-track {
+//           background: transparent;
+//         }
+
+//         button {
+//           @include skills_button;
+//           color: $dark-color;
+//           font-weight: 700;
+//         }
+//       }
+//     }
+//   }
+
+//   // Responsive fix
+//   @media (max-width: 768px) {
+//     .sidebar {
+//       position: fixed;
+//       width: 100%;
+//       height: auto;
+//       margin-top: 10vh;
+//     }
+
+//     .content-container {
+//       margin-left: 0;
+//     }
+//   }
+// }
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixins";
+
+$sidebar-width: 12vw;
+
+[data-theme="dark"] .retrieve {
   max-width: 100vw;
-  min-height: 90vh;
-  @include flex(column, space-between, center, wrap);
-  background-image: url("../../../assets/background2.jpg");
+  min-height: 100vh;
+  background-image: url("../../../assets/dark2.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   color: $primary-color;
+  padding: 20px;
+  padding-top: 10vh;
+
+  .content-container {
+    margin-left: $sidebar-width;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
+    margin-left: $sidebar-width;
+  }
 
   .cards {
     width: 100%;
     @include flex(row, space-evenly, flex-start, wrap);
-    gap: 10px;
+    gap: 20px;
 
     .card {
-      width: 400px;
+      width: 380px;
       height: 240px;
       padding: 10px;
-      border: 2px solid rgba(117, 138, 185, 0.726);
+      margin-top: 10px;
       border-radius: 6px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: rgba(47, 81, 109, 0.018);
-      backdrop-filter: blur(40px);
 
-
-      border: 2px solid rgba(140, 154, 177, 0.365);
-      background: rgba(30, 44, 103, 0.4);
-      border-radius: 10px;
-      z-index: 2;
-      overflow: hidden;
-      backdrop-filter: blur(1px);
-      -webkit-backdrop-filter: blur(5px);
+      // Glassmorphism base style
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      background-color: rgba(17, 25, 40, 0.418);
+      border: 2px solid rgba(192, 192, 192, 0.342);
+      box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
+      color: $primary-color;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
 
       &:hover {
-        box-shadow:
-          0 4px 12px rgba(120, 180, 255, 0.15), // subtle icy blue glow
-          0 2px 4px rgba(0, 0, 0, 0.25); // soft shadow for depth
-        transform: translateY(-3px);}
+        // Solid override background to fix partial coverage
+        background-color: $secondary-color !important;
+        box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+        color: #fff;
+      }
 
-        .flex {
-          display: flex;
-          justify-content: space-between;
+      .flex {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        max-height: 80px;
+        overflow-y: auto;
+        padding: 4px 0;
+
+        &::-webkit-scrollbar {
+          height: 6px;
+          width: 6px;
         }
 
-        .skills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          max-height: 80px;
-          overflow-y: auto;
-          padding: 4px 0;
+        &::-webkit-scrollbar-thumb {
+          background-color: lighten($secondary-color, 10%);
+          border-radius: 4px;
+        }
 
-          // Optional: custom scrollbar
-          &::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-          }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
 
-          &::-webkit-scrollbar-thumb {
-            background-color: lighten($secondary-color, 10%);
-            border-radius: 4px;
-          }
-
-          &::-webkit-scrollbar-track {
-            background: transparent;
-          }
-
-          button {
-            @include skills_button;
-          }
+        button {
+          @include skills_button;
+          color: $dark-color;
+          font-weight: 700;
         }
       }
     }
   }
+
+  // Responsive fix
+  @media (max-width: 768px) {
+    .content-container {
+      margin-left: 0;
+    }
+  }
+}

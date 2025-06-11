@@ -331,7 +331,7 @@ const Upload = () => {
         </div>
 
         <div className="selected-list">
-          <strong>Selected Skills:</strong> <p>{selectedSkills.join(", ") || "None"}</p>
+          <strong>Selected Skills:</strong> <p>{selectedSkills.join(", ") || "No Skill Selected"}</p>
         </div>
 
         <div className="input-add" style={{ marginTop: "1rem" }}>
@@ -376,7 +376,7 @@ const Upload = () => {
         </div>
 
         <div className="selected-list">
-          <strong>Selected Stacks:</strong> {selectedStacks.join(", ") || "None"}
+          <strong>Selected Stacks:</strong> {selectedStacks.join(", ") || "No  Stack Selected"}
         </div>
 
         <div className="input-add" style={{ marginTop: "1rem" }}>
