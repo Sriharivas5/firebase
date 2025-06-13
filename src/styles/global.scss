@@ -23,6 +23,33 @@ body {
         color 0.3s ease;
 }
 
+[data-theme="dark"] .app{
+    max-width: 100vw;
+    max-height: 100vh;
+    min-height: 100vh;
+    background-image: url("../assets/dark_bg2.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh 2vw;
+}
+
+[data-theme="light"] .app{
+    max-width: 100vw;
+    // max-height: 100vh;
+    min-height: 100vh;
+    overflow: scroll;
+    background-image: url("../assets/light_bg1.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh 2vw;
+}
+
 button {
     padding: 3px 10px;
     border: none;
@@ -39,3 +66,5 @@ input {
     outline: none;
     caret-color: $secondary-color;
 }
+
+

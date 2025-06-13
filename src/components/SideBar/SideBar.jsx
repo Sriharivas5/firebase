@@ -31,12 +31,13 @@ const Sidebar = ({
         <strong>Filter by Stack:</strong>
         <div className="stack-list">
           {allStacks.map((stack) => (
-            <label key={stack}>
+            <label className="custom-checkbox" key={stack}>
               <input
                 type="checkbox"
                 checked={selectedStacks.includes(stack)}
                 onChange={() => handleStackChange(stack)}
               />
+              <span className="checkmark"></span>
               {stack}
             </label>
           ))}

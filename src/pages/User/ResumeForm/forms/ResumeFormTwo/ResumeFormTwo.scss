@@ -1,6 +1,6 @@
-@use "../../../../styles/abstracts/variables" as *;
-@use "../../../../styles/abstracts/mixins" as *;
-@use "../../../../styles/themes.scss";
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+@use "../../../../../styles/themes.scss";
 
 
 
@@ -9,8 +9,8 @@
   margin: 0 auto;
   padding: 1.5rem;
   font-family: Arial, sans-serif;
-  color: #333;
-  background: #15641c;
+  color: #730303;
+  background: #dadada;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-top: 10vh;

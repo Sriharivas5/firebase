@@ -25,7 +25,7 @@ const TextAreaInput = ({ label, value, onChange, rows = 3 }) => (
 
 const BasicInfo = ({ data, onChange }) => (
   <>
-    <h2>Basic Information Form Two</h2>
+    <h2>Basic Information Form Two Updated</h2>
 
     <div className="form-row">
       <TextInput label="Name" name="name" value={data.name} onChange={onChange} />
@@ -261,11 +261,16 @@ const SkillsSection = ({ skills, onChange, addSkill, removeSkill }) => (
   </>
 );
 
-const ResumeFormTwo  = () => {
-  const { state } = useLocation();
-  const templateId = state?.templateId || "template1";
-  const navigate = useNavigate();
+const ResumeFormTwo = () => {
+  const state = useLocation();
+  // const templateId = state?.templateId || "template2";
 
+  const pathSegments = state.pathname.split('/').filter(Boolean);
+  const templateId = pathSegments[1] || "template1"; // assuming path is /form/templateId
+
+  // console.log(templateId);
+  const navigate = useNavigate();
+  // console.log(state)
   const [formData, setFormData] = useState({
     name: "John Doe",
     location: "Your Location",
@@ -443,4 +448,4 @@ const ResumeFormTwo  = () => {
   );
 };
 
-export default ResumeFormTwo ;
+export default ResumeFormTwo;

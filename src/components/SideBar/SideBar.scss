@@ -3,24 +3,109 @@
 
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 16vh;
+  left: 2vw;
   width: 12vw;
   min-width: 200px;
-  height: 100vh;
+  height: 78vh;
   color: #fff;
   padding: 1rem;
   overflow-y: auto;
   z-index: 100;
   transition: all 0.3s ease;
-
+  overflow: scroll;
+  border-radius: 0 0 0 30px;
   .sort-section,
   .stack-filters {
     margin-bottom: 1.5rem;
     @include flex(column, flex-start, flex-start);
     gap: 10px;
-        
+    font-size: 1rem;
+    padding: 15px;
 
+    // Static glassmorphism background
+    backdrop-filter: blur(18px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    background-color: rgba(26, 26, 26, 0);
+
+    // Create animated border using pseudo-element
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      background: linear-gradient(270deg, #8b5cf6, #06b6d4, #4ade80, #6366f1, #8b5cf6);
+
+      background-size: 800% 800%;
+      border-radius: 17px;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: animatedBorder 6s ease infinite;
+      z-index: 0;
+    }
+
+    // Ensure content appears above the animated border
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .custom-checkbox {
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+
+      input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 18px;
+        width: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      input[type="checkbox"]:checked ~ .checkmark {
+        background: linear-gradient(135deg, #8b5cf6, #06b6d4, #6366f1);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
+      }
+
+      .checkmark::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 5px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      input[type="checkbox"]:checked ~ .checkmark::after {
+        display: block;
+      }
+    }
   }
 
   .stack-list {
@@ -28,24 +113,43 @@
     flex-direction: column;
     gap: 0.6rem;
     @include flex(column, flex-start, flex-start);
-   
+
     label {
       font-size: 0.9rem;
       @include flex(row, center, center);
       gap: 10px;
-       cursor: pointer;
-       input{
+      cursor: pointer;
+      input {
         cursor: pointer;
-       }
+      }
     }
   }
 
   select {
     margin-top: 0.5rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
     border-radius: 4px;
     cursor: pointer;
-   
+    border: none;
+    outline: none;
+
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); // improves visibility
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(20deg, #8b5cf6, #06b6d4, #6366f1, #8b5cf6); // no green
+    background: linear-gradient(20deg, #8a5cf6a2, #0677d4be, #6365f1a9, #8a5cf6b4); // no green
+
+    background-size: 100% 100%;
+    background-size: 600% 100%;
+
+    animation: moveGradient 6s ease infinite;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   // Scrollbar styling
@@ -61,8 +165,10 @@
 
 /* Light theme glassmorphism */
 [data-theme="light"] .sidebar {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 3px solid rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.034);
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-top: none;
+
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
@@ -79,12 +185,42 @@
     color: $primary-color;
     padding: 3px 5px;
   }
+
+  .sort-section,
+  .stack-filters {
+    margin-bottom: 1.5rem;
+    @include flex(column, flex-start, flex-start);
+    gap: 10px;
+    font-size: 1rem;
+    padding: 15px;
+
+    // Static glassmorphism background
+    backdrop-filter: blur(18px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    background-color: rgba(26, 26, 26, 0);
+
+    // Create animated border using pseudo-element
+    &::before {
+      content: "";
+  
+      padding: 2px;
+      background: linear-gradient(270deg, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
+    
+    }
+
+
+    .custom-checkbox {
+  
+      color: $dark-color;
+    }
+  }
 }
 
 /* Dark theme glassmorphism */
 [data-theme="dark"] .sidebar {
   background-color: rgba(17, 25, 40, 0.418);
   border: 2px solid rgba(192, 192, 192, 0.342);
+  border-top: none;
   box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -92,7 +228,7 @@
 }
 
 @media (max-width: 768px) {
-  .sidebar{
+  .sidebar {
     width: 100vw;
     height: 10vh;
     margin-top: 10vh;

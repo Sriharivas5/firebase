@@ -3,7 +3,7 @@
 
 // $sidebar-width: 12vw;
 
-// .retrieve {
+// [data-theme="dark"] .retrieve {
 //   max-width: 100vw;
 //   min-height: 100vh;
 //   background-image: url("../../../assets/dark2.jpg");
@@ -40,12 +40,24 @@
 //       display: flex;
 //       flex-direction: column;
 //       justify-content: space-between;
-//       backdrop-filter: blur(8px) saturate(180%);
-//       -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+//       // Glassmorphism base style
+//       backdrop-filter: blur(16px) saturate(180%);
+//       -webkit-backdrop-filter: blur(8px) saturate(180%);
 //       background-color: rgba(17, 25, 40, 0.418);
 //       border: 2px solid rgba(192, 192, 192, 0.342);
 //       box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
 //       color: $primary-color;
+//       transition:
+//         background-color 0.3s ease,
+//         box-shadow 0.3s ease;
+
+//       &:hover {
+//         // Solid override background to fix partial coverage
+//         background-color: $secondary-color !important;
+//         box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+//         color: #fff;
+//       }
 
 //       .flex {
 //         display: flex;
@@ -85,119 +97,183 @@
 
 //   // Responsive fix
 //   @media (max-width: 768px) {
-//     .sidebar {
-//       position: fixed;
-//       width: 100%;
-//       height: auto;
-//       margin-top: 10vh;
-//     }
-
 //     .content-container {
 //       margin-left: 0;
 //     }
 //   }
 // }
+
 @import "../../../styles/abstracts/variables";
 @import "../../../styles/abstracts/mixins";
 
-$sidebar-width: 12vw;
+$sidebar-width: 14vw;
 
-[data-theme="dark"] .retrieve {
-  max-width: 100vw;
-  min-height: 100vh;
-  background-image: url("../../../assets/dark2.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: $primary-color;
-  padding: 20px;
-  padding-top: 10vh;
+[data-theme="dark"] .main {
+  // padding: 20px;
+  .retrieve {
+    width: 96vw;
+    min-height: 88vh;
+    max-height: 88vh;
+    overflow: scroll;
+    border: 2px solid rgba(248, 230, 230, 0.336);
+    // background-image: url("../../../assets/dark_bg2.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: $primary-color;
+    padding-top: 10vh;
+    border-left: 0;
+    border-top: 0;
+    border-radius: 0 30px 30px 30px;
 
-  .content-container {
-    margin-left: $sidebar-width;
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  h2 {
-    margin-left: $sidebar-width;
-  }
-
-  .cards {
-    width: 100%;
-    @include flex(row, space-evenly, flex-start, wrap);
-    gap: 20px;
-
-    .card {
-      width: 380px;
-      height: 240px;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
+    .content-container {
+      margin-left: $sidebar-width;
+      padding: 0 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 20px;
+    }
 
-      // Glassmorphism base style
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(8px) saturate(180%);
-      background-color: rgba(17, 25, 40, 0.418);
-      border: 2px solid rgba(192, 192, 192, 0.342);
-      box-shadow: 2px 2px 12px rgba(17, 0, 167, 0.5);
-      color: $primary-color;
-      transition:
-        background-color 0.3s ease,
-        box-shadow 0.3s ease;
+    h2 {
+      margin-left: $sidebar-width;
+    }
 
-      &:hover {
-        // Solid override background to fix partial coverage
-        background-color: $secondary-color !important;
-        box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
-        color: #fff;
-      }
+    .cards {
+      width: 100%;
+      @include flex(row, space-evenly, flex-start, wrap);
+      gap: 20px;
 
-      .flex {
+      .card {
+        position: relative;
+        width: 380px;
+        height: 240px;
+        padding: 20px;
+        margin-top: 10px;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
+        border-radius: 30px;
+        overflow: hidden;
+        color: $primary-color;
+        z-index: 0;
+
+        // Static glassmorphism background
+        backdrop-filter: blur(18px) saturate(115%);
+        -webkit-backdrop-filter: blur(8px) saturate(115%);
+        background-color: rgba(26, 26, 26, 0);
+
+        // Create animated border using pseudo-element
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          background: linear-gradient(270deg, #8b5cf6, #06b6d4, #4ade80, #6366f1, #8b5cf6);
+
+          background-size: 800% 800%;
+          border-radius: 30px;
+          -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: animatedBorder 6s ease infinite;
+          z-index: 0;
+        }
+
+        // Ensure content appears above the animated border
+        > * {
+          position: relative;
+          z-index: 1;
+        }
+
+        .flex {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          max-height: 80px;
+          overflow-y: auto;
+          padding: 4px 0;
+
+          &::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: lighten($secondary-color, 10%);
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          button {
+            @include skills_button;
+            color: $primary-color;
+            font-weight: 500;
+
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); // improves visibility
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(20deg, #8b5cf6, #06b6d4, #6366f1, #8b5cf6); // no green
+            background: linear-gradient(20deg, #8a5cf6a2, #0677d4be, #6365f1a9, #8a5cf6b4); // no green
+
+            background-size: 100% 100%;
+            background-size: 600% 100%;
+
+            animation: moveGradient 6s ease infinite;
+            transition:
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+
+         border: 1px solid rgba(255, 255, 255, 0.150);
+          }
+        }
       }
 
-      .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        max-height: 80px;
-        overflow-y: auto;
-        padding: 4px 0;
-
-        &::-webkit-scrollbar {
-          height: 6px;
-          width: 6px;
+      // Gradient animation for border only
+      @keyframes animatedBorder {
+        0% {
+          background-position: 0% 50%;
         }
-
-        &::-webkit-scrollbar-thumb {
-          background-color: lighten($secondary-color, 10%);
-          border-radius: 4px;
+        50% {
+          background-position: 100% 50%;
         }
-
-        &::-webkit-scrollbar-track {
-          background: transparent;
+        100% {
+          background-position: 0% 50%;
         }
-
-        button {
-          @include skills_button;
-          color: $dark-color;
-          font-weight: 700;
+      }
+      @keyframes moveGradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
         }
       }
     }
-  }
 
-  // Responsive fix
-  @media (max-width: 768px) {
-    .content-container {
-      margin-left: 0;
+    // Responsive fix
+    @media (max-width: 768px) {
+      .content-container {
+        margin-left: 0;
+      }
     }
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

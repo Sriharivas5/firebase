@@ -190,67 +190,69 @@ const Retrieve = () => {
     selectedStacks.length === 0
       ? jobs
       : jobs.filter((job) =>
-          job.stack.some((s) => selectedStacks.includes(s))
-        );
+        job.stack.some((s) => selectedStacks.includes(s))
+      );
 
   return (
-    <div className="retrieve">
-      <h2>Job Listings</h2>
+    <div className="main">
+      <div className="retrieve ">
+        <h2>Job Listings</h2>
 
-      <div className="content-container">
-        <Sidebar
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-          selectedStacks={selectedStacks}
-          setSelectedStacks={setSelectedStacks}
-          allStacks={allStacks}
-        />
+        <div className="content-container">
+          <Sidebar
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+            selectedStacks={selectedStacks}
+            setSelectedStacks={setSelectedStacks}
+            allStacks={allStacks}
+          />
 
-        <div className="cards">
-          {filteredJobs.length === 0 ? (
-            <p style={{ fontStyle: "italic", marginTop: "1rem" }}>
-              No job listings match for the selected filters.
-            </p>
-          ) : (
-            filteredJobs.map((job) => (
-              <div className="card" key={job.id}>
-                <h3>Role: {job.role}</h3>
-                <h4>Company: {job.company}</h4>
+          <div className="cards">
+            {filteredJobs.length === 0 ? (
+              <p style={{ fontStyle: "italic", marginTop: "1rem" }}>
+                No job listings match for the selected filters.
+              </p>
+            ) : (
+              filteredJobs.map((job) => (
+                <div className="card" key={job.id}>
+                  <h3>Role: {job.role}</h3>
+                  <h4>Company: {job.company}</h4>
 
-                <div className="flex">
-                  <h4>Experience: {job.experience}</h4>
-                  <h4>Location: {job.location}</h4>
-                </div>
-
-                <h4>
-                  Skills:
-                  <div className="skills">
-                    {Array.isArray(job.skills) &&
-                      job.skills.map((skill, index) => (
-                        <button key={index} className="skill-button">
-                          {skill}
-                        </button>
-                      ))}
+                  <div className="flex">
+                    <h4>Experience: {job.experience}</h4>
+                    <h4>Location: {job.location}</h4>
                   </div>
-                </h4>
 
-                <div className="flex">
                   <h4>
-                    Posted{" "}
-                    {job.createdAt
-                      ? formatDistanceToNow(job.createdAt, {
-                          addSuffix: true,
-                        }).replace("about ", "")
-                      : "some time ago"}
+                    Skills:
+                    <div className="skills">
+                      {Array.isArray(job.skills) &&
+                        job.skills.map((skill, index) => (
+                          <button key={index} className="skill-button">
+                            {skill}
+                          </button>
+                        ))}
+                    </div>
                   </h4>
 
-                  <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
-                    <button>Apply Here</button>
-                  </a>
+                  <div className="flex">
+                    <h4>
+                      Posted{" "}
+                      {job.createdAt
+                        ? formatDistanceToNow(job.createdAt, {
+                          addSuffix: true,
+                        }).replace("about ", "")
+                        : "some time ago"}
+                    </h4>
+
+                    <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
+                      <button>Apply Here</button>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

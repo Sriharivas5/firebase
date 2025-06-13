@@ -146,40 +146,41 @@ import TemplateSelector from "./pages/User/TemplateSelector/TemplateSelector";
 import FormRouter from "./pages/User/ResumeForm/FormRouter"
 import ResumeGenerated from "./pages/User/ResumeGenerated/ResumeGenerated";
 import Navbbar from "./components/Navbar/Navbbar";
-
 function App() {
   return (
-    <>
+    <div >
       <Router>
-        <Navbbar/>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset" element={<Reset />} />
-          <Route
-            path="/upload"
-            element={
-              <ProtectedRoute>
-                <UploadForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/manage"
-            element={
-              <ProtectedRoute>
-                <ManageJobs />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/" element={<RetrieveText />} />
-          <Route path="/selector" element={<TemplateSelector />} />
-          
-          <Route path="/form/:templateId" element={<FormRouter />} />
-          
-          <Route path="/resume" element={<ResumeGenerated />} />
-        </Routes>
+        {/* <Navbbar /> */}
+        <div className="app">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset" element={<Reset />} />
+            <Route
+              path="/upload"
+              element={
+                <ProtectedRoute>
+                  <UploadForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/manage"
+              element={
+                <ProtectedRoute>
+                  <ManageJobs />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/" element={<RetrieveText />} />
+            <Route path="/selector" element={<TemplateSelector />} />
+
+            <Route path="/form/:templateId" element={<FormRouter />} />
+
+            <Route path="/resume" element={<ResumeGenerated />} />
+          </Routes>
+        </div>
       </Router>
-    </>
+    </div>
   );
 }
 

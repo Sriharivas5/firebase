@@ -1,29 +1,30 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { generatePDF } from "../../../utils/generatePDF";
-
-import TemplateOne from "../../../components/templates/TemplateOne/TemplateOne";
-import TemplateTwo from "../../../components/templates/TemplateTwo/TemplateTwo";
-import TemplateThree from "../../../components/templates/TemplateThree/TemplateThree";
-
-const templates = {
-  template1: TemplateOne,
-  template2: TemplateTwo,
-  template3: TemplateThree,
-
-};
-
+import React from 'react';
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
+import { useLocation } from 'react-router-dom';
+import { templates } from '../../../templateConfig';
+import "./ResumeGenerated.scss";
 const ResumeGenerated = () => {
-  const { state } = useLocation();
-  const { formData, templateId } = state || {};
-  const SelectedTemplate = templates[templateId] || TemplateOne;
+  const location = useLocation();
+  const { templateId, formData } = location.state || {};
 
-  if (!formData) return <p>Invalid data. Please go back and fill the form.</p>;
+  const PDFComponent = templates[templateId]?.pdfComponent;
+
+  if (!PDFComponent || !formData) {
+    return <div>Error generating resume.</div>;
+  }
 
   return (
-    <div>
-      <SelectedTemplate data={formData} />
-      <button onClick={() => generatePDF("resume")}>Download as PDF</button>
+    <div className='genertaedResume'>
+      {/* <h2>Preview Resume</h2> */}
+      <PDFViewer id="pdf">
+        <PDFComponent formData={formData} />
+      </PDFViewer>
+      {/* <PDFDownloadLink
+        document={<PDFComponent formData={formData} />}
+        fileName="resume.pdf"
+      >
+        {({ loading }) => (loading ? 'Preparing download...' : 'Download PDF')}
+      </PDFDownloadLink> */}
     </div>
   );
 };

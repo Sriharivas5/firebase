@@ -41,7 +41,7 @@ import "./TemplateSelector.scss"
 
 const templates = [
   { id: "template1", image: resume1, name: "Classic" },
-  { id: "template2", image: resume1, name: "Modern" },
+  { id: "template2", image: resume2, name: "Modern" },
   { id: "template3", image: resume2, name: "Cult" },
 ];
 
