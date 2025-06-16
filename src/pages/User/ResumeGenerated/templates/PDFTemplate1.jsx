@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 1.6,
     color: "#333",
-    backgroundColor:"red"
+    // backgroundColor:"red"
   },
   section: { marginBottom: 1 },
   heading: {
