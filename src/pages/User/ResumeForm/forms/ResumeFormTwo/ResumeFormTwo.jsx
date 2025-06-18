@@ -1,450 +1,636 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import "./ResumeFormTwo.scss";
+// import BasicInfo from "../compos/PersonalDetails";
+// import EducationSection from "../compos/Education";
+// import ExperienceSection from "../compos/WorkExperience";
+// import ProjectsSection from "../compos/Projects";
+// import SkillsSection from "../compos/SkillsAndTools";
+// import CertificationsSection from "../compos/Certifications"
+// import ExtracurricularActivitiesSection from "../compos/ExtracurricularActivities"
 
-import "./ResumeFormTwo.scss";
+// const ResumeFormTwo = () => {
+//   const { state } = useLocation();
+//   const navigate = useNavigate();
+//   const templateId = state?.templateId || "template1";
 
-const TextInput = ({ label, name, value, onChange, readOnly = false }) => (
-  <div className="form-group">
-    <label>{label}</label>
-    <input
-      type="text"
-      name={name}
-      value={value}
-      onChange={onChange}
-      readOnly={readOnly}
-    />
-  </div>
-);
+//   const defaultData = {
+//     name: "Jane Smith",
+//     location: "San Francisco, CA",
+//     email: "jane.smith@example.com",
+//     phone: "9876543210",
+//     website: "janesmith.dev",
+//     linkedin: "linkedin.com/in/janesmith",
+//     github: "github.com/janesmith",
+//     objective:
+//       "Aspiring software engineer with a passion for building impactful applications using modern web technologies.",
+//     education: [
+//       {
+//         institution: "Stanford University",
+//         educationLevel: "Graduation",
+//         startDate: "2018-09",
+//         endDate: "2022-06",
+//         gpa: "3.9",
+//         gradingType: "cgpa",
+//       },
+//     ],
+//     experience: [
+//       {
+//         title: "Software Engineering Intern",
+//         company: "Spotify",
+//         location: "New York, NY",
+//         startDate: "2021-06",
+//         endDate: "2021-08",
+//         bullets: [
+//           "Built internal dashboard using React and TypeScript to streamline analytics workflows.",
+//           "Reduced API response time by 25% through optimized queries and caching.",
+//           "Collaborated with cross-functional teams to deploy features to production.",
+//         ],
+//       },
+//     ],
+//     projects: [
+//       {
+//         name: "Portfolio Website",
+//         link: "https://janesmith.dev",
+//         startDate: "2022-01",
+//         endDate: "2022-12",
+//         tools: "React, SCSS, Netlify",
+//         description:
+//           "Designed and developed a responsive portfolio website to showcase projects and blogs.",
+//       },
+//     ],
+//     skills: {
+//       languages: ["JavaScript", "TypeScript", "Python"],
+//       tools: ["React", "Node.js", "Express"],
+//     },
+//     certifications: [
+//       {
+//         name: '',
+//         organization: '',
+//         issueDate: '',
+//         expiryDate: '',
+//         url: '',
+//         id: '',
+//       },
+//     ],
+//     extracurricularActivities: [
+//       {
+//         role: "",
+//         organization: "",
+//         duration: "",
+//         description: "",
+//       },
+//     ],
+//   };
 
-const TextAreaInput = ({ label, value, onChange, rows = 3 }) => (
-  <div className="form-group">
-    <label>{label}</label>
-    <textarea rows={rows} value={value} onChange={onChange} />
-  </div>
-);
+//   const [formData, setFormData] = useState(() => {
+//     const saved = localStorage.getItem("resume-form");
+//     return saved ? JSON.parse(saved) : defaultData;
+//   });
+//   const [newSkill, setNewSkill] = useState({ languages: "", tools: "" });
+//   const [step, setStep] = useState(0);
 
-const BasicInfo = ({ data, onChange }) => (
-  <>
-    <h2>Basic Information Form Two Updated</h2>
+//   useEffect(() => {
+//     localStorage.setItem("resume-form", JSON.stringify(formData));
+//   }, [formData]);
 
-    <div className="form-row">
-      <TextInput label="Name" name="name" value={data.name} onChange={onChange} />
-      <TextInput label="Email" name="email" value={data.email} onChange={onChange} />
-      <TextInput label="Phone" name="phone" value={data.phone} onChange={onChange} />
-    </div>
+//   // Original submit logic
+//   const onSubmit = (e) => {
+//     e.preventDefault();
+//     navigate("/resume", { state: { formData, templateId } });
+//   };
 
-    <div className="form-row">
-      <TextInput label="Location" name="location" value={data.location} onChange={onChange} />
-      <TextInput label="Website" name="website" value={data.website} onChange={onChange} />
-    </div>
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//   };
 
-    <div className="form-row">
-      <TextInput label="LinkedIn" name="linkedin" value={data.linkedin} onChange={onChange} />
-      <TextInput label="GitHub" name="github" value={data.github} onChange={onChange} />
-    </div>
-  </>
-);
+//   const handleArrayChange = (idx, field, value, section) => {
+//     const list = Array.isArray(formData[section]) ? [...formData[section]] : [];
+//     list[idx] = { ...list[idx], [field]: value };
+//     setFormData({ ...formData, [section]: list });
+//   };
+//   const handleBulletChange = (section, i, j, value) => {
+//     const updated = [...formData[section]];
+//     updated[i].bullets[j] = value;
+//     setFormData((prev) => ({ ...prev, [section]: updated }));
+//   };
 
-const EducationSection = ({ education, onChange, addEntry, removeEntry }) => (
-  <>
-    <h2>Education</h2>
-    {education.map((edu, i) => (
-      <div key={i} className="dynamic-section">
-        <TextInput
-          label="Institution"
-          value={edu.institution}
-          onChange={e => onChange("education", i, "institution", e.target.value)}
-        />
+//   const addEntry = (section) => {
+//     const newEntry = {
+//       education: {
+//         institution: "",
+//         educationLevel: "",
+//         startDate: "",
+//         endDate: "",
+//         gpa: "",
+//         gradingType: "cgpa",
+//       },
+//       experience: {
+//         title: "",
+//         company: "",
+//         location: "",
+//         startDate: "",
+//         endDate: "",
+//         bullets: [""],
+//       },
+//       projects: {
+//         name: "",
+//         link: "",
+//         startDate: "",
+//         endDate: "",
+//         tools: "",
+//         description: "",
+//       },
+//       extracurricularActivities: {
+//         role: "",
+//         organization: "",
+//         duration: "",
+//         description: "",
+//       },
+//     }[section];
 
-        <div className="form-row">
-          <TextInput
-            label="Date"
-            value={edu.date}
-            onChange={e => onChange("education", i, "date", e.target.value)}
-          />
-          <TextInput
-            label="GPA"
-            value={edu.gpa}
-            onChange={e => onChange("education", i, "gpa", e.target.value)}
-          />
-        </div>
+//     setFormData((prev) => {
+//       const currentList = Array.isArray(prev[section]) ? prev[section] : [];
+//       return {
+//         ...prev,
+//         [section]: [...currentList, newEntry],
+//       };
+//     });
+//   };
 
-        <TextAreaInput
-          label="Coursework"
-          value={edu.coursework}
-          onChange={e => onChange("education", i, "coursework", e.target.value)}
-        />
+//   const removeEntry = (section, i) => {
+//     const updated = [...formData[section]];
+//     updated.splice(i, 1);
+//     setFormData((prev) => ({ ...prev, [section]: updated }));
+//   };
 
-        {education.length > 1 && (
-          <button type="button" onClick={() => removeEntry("education", i)}>
-            Remove Education
-          </button>
-        )}
-        <hr />
-      </div>
-    ))}
+//   const addBullet = (i) => {
+//     const updated = [...formData.experience];
+//     updated[i].bullets.push("");
+//     setFormData((prev) => ({ ...prev, experience: updated }));
+//   };
 
-    <button type="button" onClick={() => addEntry("education")}>Add Education</button>
-  </>
-);
+//   const removeBullet = (i, j) => {
+//     const updated = [...formData.experience];
+//     updated[i].bullets.splice(j, 1);
+//     setFormData((prev) => ({ ...prev, experience: updated }));
+//   };
 
-const ExperienceSection = ({
-  experience,
-  onChange,
-  onBulletChange,
-  addEntry,
-  removeEntry,
-  addBullet,
-  removeBullet,
-}) => (
-  <>
-    <h2>Experience</h2>
-    {experience.map((exp, i) => (
-      <div key={i} className="dynamic-section">
-        <div className="form-row">
-          <TextInput
-            label="Title"
-            value={exp.title}
-            onChange={e => onChange("experience", i, "title", e.target.value)}
-          />
-          <TextInput
-            label="Company"
-            value={exp.company}
-            onChange={e => onChange("experience", i, "company", e.target.value)}
-          />
-        </div>
+//   const addSkill = (type) => {
+//     const value = newSkill[type].trim();
+//     if (!value || formData.skills[type].includes(value)) return;
+//     setFormData((prev) => ({
+//       ...prev,
+//       skills: {
+//         ...prev.skills,
+//         [type]: [...prev.skills[type], value],
+//       },
+//     }));
+//     setNewSkill((prev) => ({ ...prev, [type]: "" }));
+//   };
 
-        <div className="form-row">
-          <TextInput
-            label="Location"
-            value={exp.location}
-            onChange={e => onChange("experience", i, "location", e.target.value)}
-          />
-          <TextInput
-            label="Date"
-            value={exp.date}
-            onChange={e => onChange("experience", i, "date", e.target.value)}
-          />
-        </div>
+//   const removeSkill = (type, i) => {
+//     const updated = [...formData.skills[type]];
+//     updated.splice(i, 1);
+//     setFormData((prev) => ({
+//       ...prev,
+//       skills: {
+//         ...prev.skills,
+//         [type]: updated,
+//       },
+//     }));
+//   };
+//   const steps = [
+//     <BasicInfo key="basic"
+//       data={formData}
+//       onChange={handleChange}
+//       fieldsToShow={['firstName', 'primaryPhone', 'dob', 'objective']}
+//     />,
+//     <EducationSection
+//       key="edu"
+//       education={formData.education}
+//       onChange={handleArrayChange}
+//       addEntry={addEntry}
+//       removeEntry={removeEntry}
+//       fieldsToShow={['degree', 'startYear']}
+//     />
+//     ,
+//     <ExperienceSection
+//       data={formData.experience}
+//       onChange={(idx, field, value) => handleArrayChange(idx, field, value, "experience")}
+//       onBulletChange={(idx, bi, val) => {
+//         const updated = [...formData.experience];
+//         if (!updated[idx].bullets) updated[idx].bullets = [];
+//         updated[idx].bullets[bi] = val;
+//         setFormData({ ...formData, experience: updated });
+//       }}
+//       addEntry={addEntry}
+//       removeEntry={removeEntry}
+//       addBullet={idx => {
+//         const updated = [...formData.experience];
+//         if (!updated[idx].bullets) updated[idx].bullets = [];
+//         updated[idx].bullets.push("");
+//         setFormData({ ...formData, experience: updated });
+//       }}
+//       removeBullet={(idx, bi) => {
+//         const updated = [...formData.experience];
+//         updated[idx].bullets?.splice(bi, 1);
+//         setFormData({ ...formData, experience: updated });
+//       }}
+//       fieldsToShow={["jobTitle", "company", "startDate", "endDate", "bullets", "addBullet"]}
+//     />,
+//     <ProjectsSection
+//       data={formData.projects}
+//       onChange={(idx, field, value) => handleArrayChange(idx, field, value, "projects")}
+//       addEntry={() => {
+//         setFormData({
+//           ...formData,
+//           projects: [...formData.projects, {
+//             title: "",
+//             description: "",
+//             role: "",
+//             technologies: "",
+//             startDate: "",
+//             endDate: "",
+//             link: "",
+//             teamSize: "",
+//             status: ""
+//           }]
+//         });
+//       }}
+//       removeEntry={(idx) => {
+//         const updated = [...formData.projects];
+//         updated.splice(idx, 1);
+//         setFormData({ ...formData, projects: updated });
+//       }}
+//       fieldsToShow={["title", "description", "link", "status"]}
+//     />
+//     ,
+//     <SkillsSection
+//       data={formData.skills}
+//       fieldsToShow={["languages", "tools"]}
+//       addSkill={(type, value) => {
+//         if (!formData.skills[type]) formData.skills[type] = [];
+//         setFormData((prev) => ({
+//           ...prev,
+//           skills: {
+//             ...prev.skills,
+//             [type]: [...prev.skills[type], value],
+//           },
+//         }));
+//       }}
+//       removeSkill={(type, idx) => {
+//         const updated = [...formData.skills[type]];
+//         updated.splice(idx, 1);
+//         setFormData((prev) => ({
+//           ...prev,
+//           skills: {
+//             ...prev.skills,
+//             [type]: updated,
+//           },
+//         }));
+//       }}
+//     />
+//     ,
+//     <CertificationsSection
+//       certifications={formData.certifications}
+//       onChange={handleChange}
+//       addEntry={addEntry}
+//       removeEntry={removeEntry}
+//       fieldsToShow={['name', 'organization', 'issueDate', 'expiryDate', 'url', 'id']}
+//     />,
+//     <ExtracurricularActivitiesSection
+//       data={formData.extracurricularActivities}
+//       onChange={(idx, field, value) =>
+//         handleArrayChange(idx, field, value, "extracurricularActivities")
+//       }
+//       addEntry={() => addEntry("extracurricularActivities")}
+//       removeEntry={(idx) => removeEntry("extracurricularActivities", idx)}
+//       fieldsToShow={["role", "organization", "duration", "description"]}
+//     />
+//   ];
 
-        <label>Responsibilities / Achievements</label>
-        {exp.bullets.map((bullet, idx) => (
-          <div key={idx} className="form-group bullet-point">
-            <textarea
-              rows={2}
-              value={bullet}
-              onChange={e => onBulletChange("experience", i, idx, e.target.value)}
-            />
-            {exp.bullets.length > 1 && (
-              <button
-                type="button"
-                onClick={() => removeBullet(i, idx)}
-                className="remove-bullet-btn"
-              >
-                x
-              </button>
-            )}
-          </div>
-        ))}
-        <button type="button" onClick={() => addBullet(i)}>
-          Add Bullet Point
-        </button>
+//   return (
+//     <form className="resume-form1" onSubmit={onSubmit}>
+//       {steps[step]}
+//       <div className="wizard-buttons">
+//         {step > 0 && (
+//           <button type="button" onClick={() => setStep((s) => s - 1)}>
+//             Prev
+//           </button>
+//         )}
+//         {step < steps.length ? (
+//           <button type="button" onClick={() => setStep((s) => s + 1)}>
+//             Next
+//           </button>
+//         ) : (
+//           <button type="submit" className="generate-btn">
+//             Generate Resume
+//           </button>
+//         )}
+//       </div>
+//     </form>
+//   );
+// };
 
-        {experience.length > 1 && (
-          <button type="button" onClick={() => removeEntry("experience", i)}>
-            Remove Experience
-          </button>
-        )}
-        <hr />
-      </div>
-    ))}
-    <button type="button" onClick={() => addEntry("experience")}>Add Experience</button>
-  </>
-);
+// export default ResumeFormTwo;
 
-const ProjectsSection = ({ projects, onChange, addEntry, removeEntry }) => (
-  <>
-    <h2>Projects</h2>
-    {projects.map((proj, i) => (
-      <div key={i} className="dynamic-section">
-        <div className="form-row">
-          <TextInput
-            label="Name"
-            value={proj.name}
-            onChange={e => onChange("projects", i, "name", e.target.value)}
-          />
-          <TextInput
-            label="Link"
-            value={proj.link}
-            onChange={e => onChange("projects", i, "link", e.target.value)}
-          />
-        </div>
 
-        <div className="form-row">
-          <TextInput
-            label="Date"
-            value={proj.date}
-            onChange={e => onChange("projects", i, "date", e.target.value)}
-          />
-          <TextInput
-            label="Skills"
-            value={proj.tools}
-            onChange={e => onChange("projects", i, "tools", e.target.value)}
-          />
-        </div>
 
-        <TextAreaInput
-          label="Description"
-          value={proj.description}
-          onChange={e => onChange("projects", i, "description", e.target.value)}
-        />
-
-        {projects.length > 1 && (
-          <button type="button" onClick={() => removeEntry("projects", i)}>
-            Remove Project
-          </button>
-        )}
-        <hr />
-      </div>
-    ))}
-    <button type="button" onClick={() => addEntry("projects")}>Add Project</button>
-  </>
-);
-
-const SkillsSection = ({ skills, onChange, addSkill, removeSkill }) => (
-  <>
-    <h2>Skills</h2>
-
-    <h3>Languages</h3>
-    <div className="skills-row">
-      {skills.languages.map((lang, i) => (
-        <div className="form-group skill-group" key={i}>
-          <input
-            type="text"
-            value={lang}
-            readOnly
-          />
-          <button
-            type="button"
-            onClick={() => removeSkill("languages", i)}
-            className="remove-x"
-            aria-label={`Remove language ${lang}`}
-          >
-            ×
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={() => addSkill("languages")}>Add Language</button>
-    </div>
-
-    <h3>Tools & Technologies</h3>
-    <div className="skills-row">
-      {skills.tools.map((tool, i) => (
-        <div className="form-group skill-group" key={i}>
-          <input
-            type="text"
-            value={tool}
-            readOnly
-          />
-          <button
-            type="button"
-            onClick={() => removeSkill("tools", i)}
-            className="remove-x"
-            aria-label={`Remove tool ${tool}`}
-          >
-            ×
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={() => addSkill("tools")}>Add Tool</button>
-    </div>
-  </>
-);
-
-const ResumeFormTwo = () => {
-  const state = useLocation();
-  // const templateId = state?.templateId || "template2";
-
-  const pathSegments = state.pathname.split('/').filter(Boolean);
-  const templateId = pathSegments[1] || "template1"; // assuming path is /form/templateId
-
-  // console.log(templateId);
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import PersonalDetails from "../compos/PersonalDetails";
+import EducationSection from "../compos/Education";
+import ExperienceSection from "../compos/WorkExperience";
+import ProjectsSection from "../compos/Projects";
+import SkillsSection from "../compos/SkillsAndTools";
+import CertificationsSection from "../compos/Certifications";
+import ExtracurricularActivitiesSection from "../compos/ExtracurricularActivities";
+import HackathonsCompetitionsSection from "../compos/HackathonsCompetitions"
+const ResumeFormTwo = ({ templateId = "template1" }) => {
   const navigate = useNavigate();
-  // console.log(state)
-  const [formData, setFormData] = useState({
-    name: "John Doe",
-    location: "Your Location",
-    email: "youremail@yourdomain.com",
-    phone: "0541 999 99 99",
-    website: "yourwebsite.com",
-    linkedin: "linkedin.com/in/yourusername",
-    github: "github.com/yourusername",
-    education: [
-      {
-        institution: "University of Pennsylvania, BS in Computer Science",
-        date: "Sept 2000 – May 2005",
-        gpa: "GPA: 3.9/4.0",
-        coursework:
-          "Computer Architecture, Comparison of Learning Algorithms, Computational Theory",
-      },
-    ],
-    experience: [
-      {
-        title: "Software Engineer",
-        company: "Apple",
-        location: "Cupertino, CA",
-        date: "June 2005 – Aug 2007",
-        bullets: [
-          "Reduced time to render user buddy lists by 75% by implementing a prediction algorithm",
-          "Integrated iChat with Spotlight Search",
-          "Redesigned chat file format",
-        ],
-      },
-    ],
-    projects: [
-      {
-        name: "Multi-User Drawing Tool",
-        link: "github.com/name/repo",
-        description: "Developed synchronized electronic classroom chalkboard",
-        tools: "C++, MFC",
-        date: "",
-      },
-    ],
+
+  const defaultData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    dob: "",
+    address: "",
+    objective: "",
+    linkedin: "",
+    github: "",
+    profilePicture: "",
+    education: [{
+      institution: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      grade: ""
+    }],
+    experience: [{
+      company: "",
+      jobTitle: "",
+      startDate: "",
+      endDate: "",
+      bullets: [""]
+    }],
+    projects: [{
+      title: "",
+      description: "",
+      link: ""
+    }],
     skills: {
-      languages: ["C++", "C", "Java", "Objective-C", "C#", "SQL", "JavaScript"],
-      tools: [".NET", "Microsoft SQL Server", "XCode", "Interface Builder"],
+      languages: [],
+      tools: []
     },
+    certifications: [{
+      name: "",
+      organization: "",
+      issueDate: ""
+    }],
+    extracurricularActivities: [{
+      role: "",
+      organization: "",
+      description: ""
+    }]
+  };
+
+  const [formData, setFormData] = useState(() => {
+    const saved = localStorage.getItem("resumeData");
+    return saved ? JSON.parse(saved) : defaultData;
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  useEffect(() => {
+    localStorage.setItem("resumeData", JSON.stringify(formData));
+  }, [formData]);
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleArrayChange = (section, index, field, value) => {
-    const updatedSection = [...formData[section]];
-    updatedSection[index][field] = value;
-    setFormData((prev) => ({ ...prev, [section]: updatedSection }));
-  };
-
-  const handleBulletChange = (section, expIndex, bulletIndex, value) => {
-    const updatedSection = [...formData[section]];
-    updatedSection[expIndex].bullets[bulletIndex] = value;
-    setFormData((prev) => ({ ...prev, [section]: updatedSection }));
+    setFormData(prev => {
+      const updated = [...prev[section]];
+      updated[index] = { ...updated[index], [field]: value };
+      return { ...prev, [section]: updated };
+    });
   };
 
   const addEntry = (section) => {
-    let newEntry;
-    switch (section) {
-      case "education":
-        newEntry = { institution: "", date: "", gpa: "", coursework: "" };
-        break;
-      case "experience":
-        newEntry = { title: "", company: "", location: "", date: "", bullets: [""] };
-        break;
-      case "projects":
-        newEntry = { name: "", link: "", description: "", tools: "", date: "" };
-        break;
-      default:
-        return;
-    }
-    setFormData((prev) => ({ ...prev, [section]: [...prev[section], newEntry] }));
+    setFormData(prev => {
+      const newEntry = {
+        education: {
+          institution: "",
+          degree: "",
+          startYear: "",
+          endYear: "",
+          grade: ""
+        },
+        experience: {
+          company: "",
+          jobTitle: "",
+          startDate: "",
+          endDate: "",
+          bullets: [""]
+        },
+        projects: {
+          title: "",
+          description: "",
+          link: ""
+        },
+        certifications: {
+          name: "",
+          organization: "",
+          issueDate: ""
+        },
+        extracurricularActivities: {
+          role: "",
+          organization: "",
+          description: ""
+        }
+      }[section];
+
+      return {
+        ...prev,
+        [section]: [...prev[section], newEntry]
+      };
+    });
   };
 
   const removeEntry = (section, index) => {
-    const updatedSection = [...formData[section]];
-    updatedSection.splice(index, 1);
-    setFormData((prev) => ({ ...prev, [section]: updatedSection }));
+    setFormData(prev => {
+      const updated = [...prev[section]];
+      updated.splice(index, 1);
+      return { ...prev, [section]: updated };
+    });
   };
 
-  const addBullet = (expIndex) => {
-    const updatedExperience = [...formData.experience];
-    updatedExperience[expIndex].bullets.push("");
-    setFormData((prev) => ({ ...prev, experience: updatedExperience }));
+  const handleBulletChange = (section, entryIndex, bulletIndex, value) => {
+    setFormData(prev => {
+      const updated = [...prev[section]];
+      updated[entryIndex].bullets[bulletIndex] = value;
+      return { ...prev, [section]: updated };
+    });
   };
 
-  const removeBullet = (expIndex, bulletIndex) => {
-    const updatedExperience = [...formData.experience];
-    updatedExperience[expIndex].bullets.splice(bulletIndex, 1);
-    setFormData((prev) => ({ ...prev, experience: updatedExperience }));
+  const addBullet = (section, entryIndex) => {
+    setFormData(prev => {
+      const updated = [...prev[section]];
+      updated[entryIndex].bullets.push("");
+      return { ...prev, [section]: updated };
+    });
   };
 
-  // For adding/removing skills
-  const addSkill = (type) => {
-    // Prompt for new skill
-    const newSkill = prompt(`Enter new ${type === "languages" ? "language" : "tool"}`);
-    if (!newSkill) return;
-
-    // Prevent duplicates
-    if (formData.skills[type].includes(newSkill.trim())) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [type]: [...prev.skills[type], newSkill.trim()],
-      },
-    }));
+  const removeBullet = (section, entryIndex, bulletIndex) => {
+    setFormData(prev => {
+      const updated = [...prev[section]];
+      updated[entryIndex].bullets.splice(bulletIndex, 1);
+      return { ...prev, [section]: updated };
+    });
   };
 
-  const removeSkill = (type, index) => {
-    const updatedSkills = [...formData.skills[type]];
-    updatedSkills.splice(index, 1);
-    setFormData((prev) => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [type]: updatedSkills,
-      },
-    }));
+  const handleSkillChange = (type, action, value, index) => {
+    setFormData(prev => {
+      const updatedSkills = { ...prev.skills };
+
+      if (action === "add") {
+        updatedSkills[type] = [...updatedSkills[type], value];
+      } else if (action === "remove") {
+        updatedSkills[type] = updatedSkills[type].filter((_, i) => i !== index);
+      }
+
+      return { ...prev, skills: updatedSkills };
+    });
   };
 
-  const onSubmit = (e) => {
+  const [step, setStep] = useState(0);
+
+  const steps = [
+    <PersonalDetails
+      key="personal"
+      data={formData}
+      onChange={handleChange}
+      fieldsToShow={['firstName', 'lastName', 'email', 'phone', 'objective', 'linkedin', 'github']}
+    />,
+    <EducationSection
+      key="education"
+      education={formData.education}
+      onChange={(idx, field, value) => handleArrayChange("education", idx, field, value)}
+      addEntry={() => addEntry("education")}
+      removeEntry={(idx) => removeEntry("education", idx)}
+      fieldsToShow={['institution', 'degree', 'startYear', 'endYear']}
+    />,
+    <ExperienceSection
+      data={formData.experience}
+      onChange={handleArrayChange}  // Should accept (section, index, field, value)
+      onBulletChange={handleBulletChange}  // Should accept (section, entryIndex, bulletIndex, value)
+      addEntry={addEntry}  // Should accept (section)
+      removeEntry={removeEntry}  // Should accept (section, index)
+      addBullet={addBullet}  // Should accept (section, entryIndex)
+      removeBullet={removeBullet}  // Should accept (section, entryIndex, bulletIndex)
+    />,
+    <ProjectsSection
+      key="projects"
+      data={formData.projects}
+      onChange={(idx, field, value) => handleArrayChange("projects", idx, field, value)}
+      addEntry={() => addEntry("projects")}
+      removeEntry={(idx) => removeEntry("projects", idx)}
+      fieldsToShow={['title', 'description', 'link']}
+    />,
+    <SkillsSection
+      key="skills"
+      data={formData.skills}
+      onAddSkill={(type, value) => handleSkillChange(type, "add", value)}
+      onRemoveSkill={(type, index) => handleSkillChange(type, "remove", null, index)}
+      fieldsToShow={['languages', 'tools']}
+    />,
+    <CertificationsSection
+      key="certifications"
+      certifications={formData.certifications}
+      onChange={handleArrayChange}
+      addEntry={addEntry}
+      removeEntry={removeEntry}
+      fieldsToShow={['name', 'organization', 'issueDate', 'url']}
+    />,
+   
+    <HackathonsCompetitionsSection
+      data={formData.hackathons}
+      onChange={(updatedData) => {
+        setFormData({ ...formData, hackathons: updatedData });
+      }}
+      fieldsToShow={{
+        name: true,
+        organizer: true,
+        date: true,
+        rank: true,
+        techStack: true
+      }}
+    />
+  ];
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // For demo, just alert or navigate
-    // alert("Resume data ready to generate!");
-    e.preventDefault();
+
+    // Debug: Log the current formData before navigation
+    console.log("Submitting form data:", formData);
+
+    // Get the latest from localStorage as a double-check
+    const latestData = localStorage.getItem("resumeData");
+    console.log("Latest from localStorage:", latestData);
+
+    // Use the state formData, but fallback to localStorage if needed
+    const dataToSend = formData || (latestData ? JSON.parse(latestData) : null);
+
+    if (!dataToSend) {
+      console.error("No form data available to submit");
+      return;
+    }
+
     navigate("/resume", {
-      state: { formData, templateId },
+      state: {
+        formData: dataToSend,
+        templateId
+      }
     });
   };
 
   return (
-    <form className="resume-form" onSubmit={onSubmit}>
-      <BasicInfo data={formData} onChange={handleChange} />
+    <div className="container mt-4">
+      <form onSubmit={handleSubmit}>
+        {steps[step]}
 
-      <EducationSection
-        education={formData.education}
-        onChange={handleArrayChange}
-        addEntry={addEntry}
-        removeEntry={removeEntry}
-      />
+        <div className="d-flex justify-content-between mt-4">
+          {step > 0 && (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => setStep(prev => prev - 1)}
+            >
+              Previous
+            </button>
+          )}
 
-      <ExperienceSection
-        experience={formData.experience}
-        onChange={handleArrayChange}
-        onBulletChange={handleBulletChange}
-        addEntry={addEntry}
-        removeEntry={removeEntry}
-        addBullet={addBullet}
-        removeBullet={removeBullet}
-      />
-
-      <ProjectsSection
-        projects={formData.projects}
-        onChange={handleArrayChange}
-        addEntry={addEntry}
-        removeEntry={removeEntry}
-      />
-
-      <SkillsSection
-        skills={formData.skills}
-        addSkill={addSkill}
-        removeSkill={removeSkill}
-      />
-
-      <button type="submit" className="generate-btn">Generate Resume</button>
-    </form>
+          {step <= steps.length - 1 ? (
+            <button
+              type="button"
+              className="btn btn-primary ml-auto"
+              onClick={() => setStep(prev => prev + 1)}
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="btn btn-success ml-auto"
+            >
+              Generate Resume2
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -7,12 +7,23 @@ const allFields = {
   description: '',
 };
 
-const ExtracurricularActivities = ({ data, onChange, fieldsToShow = Object.keys(allFields) }) => {
+const ExtracurricularActivities = ({
+  data = [],
+  onChange = () => {},
+  addEntry = () => {},
+  removeEntry = () => {},
+  fieldsToShow = Object.keys(allFields),
+}) => {
   return (
     <div>
       <h3>Extracurricular Activities</h3>
+
+      {data.length === 0 && (
+        <p>No extracurricular activities added yet.</p>
+      )}
+
       {data.map((activity, index) => (
-        <div key={index}>
+        <div key={index} style={{ marginBottom: '1rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
           {fieldsToShow.includes('role') && (
             <input
               placeholder="Role / Title"
@@ -41,8 +52,16 @@ const ExtracurricularActivities = ({ data, onChange, fieldsToShow = Object.keys(
               onChange={(e) => onChange(index, 'description', e.target.value)}
             />
           )}
+
+          <button type="button" onClick={() => removeEntry(index)}>
+            Remove Activity
+          </button>
         </div>
       ))}
+
+      <button type="button" onClick={addEntry}>
+        Add Activity
+      </button>
     </div>
   );
 };

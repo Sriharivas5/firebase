@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PersonalDetails from "../compos/PersonalDetails";
@@ -8,8 +10,7 @@ import SkillsSection from "../compos/SkillsAndTools";
 import CertificationsSection from "../compos/Certifications";
 import ExtracurricularActivitiesSection from "../compos/ExtracurricularActivities";
 import HackathonsCompetitionsSection from "../compos/HackathonsCompetitions"
-import HobbiesInterestsSection from "../compos/HobbiesAndInterests"
-const ResumeFormOne = ({ templateId = "template1" }) => {
+const ResumeFormThree = ({ templateId = "template1" }) => {
   const navigate = useNavigate();
 
   const defaultData = {
@@ -173,7 +174,7 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
       key="personal"
       data={formData}
       onChange={handleChange}
-      fieldsToShow={['firstName', 'lastName', 'email', 'phone', 'dob', 'objective', 'linkedin', 'github']}
+      fieldsToShow={['firstName', 'lastName', 'email', 'phone', 'objective', 'linkedin', 'github']}
     />,
     <EducationSection
       key="education"
@@ -215,14 +216,7 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
       removeEntry={removeEntry}
       fieldsToShow={['name', 'organization', 'issueDate', 'url']}
     />,
-    <ExtracurricularActivitiesSection
-      key="activities"
-      data={formData.extracurricularActivities}
-      onChange={(idx, field, value) => handleArrayChange("extracurricularActivities", idx, field, value)}
-      addEntry={() => addEntry("extracurricularActivities")}
-      removeEntry={(idx) => removeEntry("extracurricularActivities", idx)}
-      fieldsToShow={['role', 'organization', 'description']}
-    />,
+   
     <HackathonsCompetitionsSection
       data={formData.hackathons}
       onChange={(updatedData) => {
@@ -235,14 +229,7 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
         rank: true,
         techStack: true
       }}
-    />,
-     <HobbiesInterestsSection
-    key="hobbies"
-    data={formData.hobbies || []}
-    onChange={(updatedHobbies) => 
-      setFormData({...formData, hobbies: updatedHobbies})
-    }
-  />
+    />
   ];
 
   const handleSubmit = (e) => {
@@ -274,6 +261,8 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
   return (
     <div className="container mt-4">
       <form onSubmit={handleSubmit}>
+
+        
         {steps[step]}
 
         <div className="d-flex justify-content-between mt-4">
@@ -300,7 +289,7 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
               type="submit"
               className="btn btn-success ml-auto"
             >
-              Generate Resume
+              Generate Resume2
             </button>
           )}
         </div>
@@ -309,4 +298,4 @@ const ResumeFormOne = ({ templateId = "template1" }) => {
   );
 };
 
-export default ResumeFormOne;
+export default ResumeFormThree;

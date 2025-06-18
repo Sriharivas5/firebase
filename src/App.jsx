@@ -150,7 +150,7 @@ function App() {
   return (
     <div >
       <Router>
-        <Navbbar />
+        {/* <Navbbar /> */}
         <div className="app">
           <Routes>
             <Route path="/login" element={<Login />} />
